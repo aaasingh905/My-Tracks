@@ -1,21 +1,62 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
+import AccountScreen from "./screens/AccountScreen";
+import SigninScreen from "./screens/SigninScreen";
+import SignupScreen from "./screens/SignupScreen";
+import TrackDetailScreen from "./screens/TrackDetailScreen";
+import TrackListScreen from "./screens/TracksListScreen";
+import TrackCreateScreen from "./screens/TrackCreateScreen";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+import TracksScreen from "./screens/TracksListScreen";
+/* import ShowBlogScreen from "./screens/ShowBlog";
+import EditBlogScreen from "./screens/EditBlog";
+import CreateBlogScreen from "./screens/CreateBlog" */
+
+const switchNavigator = createSwitchNavigator({
+  loginFlow: createStackNavigator({
+    Signup: SignupScreen,
+    Signin: SigninScreen,
+    }),
+    mainFlow: createBottomTabNavigator({
+      trackListFlow:createStackNavigator({
+        TrackList: TrackListScreen,
+        TrackDetail: TrackDetailScreen,
+      }),
+      TrackCreate: TrackCreateScreen,
+      Account: AccountScreen,
+    })
+})
+
+const AppContainer = createAppContainer(switchNavigator)
+export default class App extends React.Component {
+  render() {
+    return (
+        <AppContainer />
+    );
+  }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+/* 
+  const AppNavigator = createStackNavigator(
+  {
+    Tracks: TracksScreen,
+      },
+
+  {
+    initialRouteName: "Tracks",
+
+    defaultNavigationOptions: {
+      title: "My Tracks",
+      headerStyle: {
+        backgroundColor: "#18d67a",
+      },
+    },
+  }
+);
+
+const AppContainer = createAppContainer(AppNavigator);
+
+
+ */
