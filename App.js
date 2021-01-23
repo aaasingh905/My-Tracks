@@ -8,8 +8,8 @@ import SignupScreen from "./screens/SignupScreen";
 import TrackDetailScreen from "./screens/TrackDetailScreen";
 import TrackListScreen from "./screens/TracksListScreen";
 import TrackCreateScreen from "./screens/TrackCreateScreen";
-
-import TracksScreen from "./screens/TracksListScreen";
+import { Provider as AuthProvider} from './components/context/authContext'
+import {setNavigator} from './navigationRef'
 /* import ShowBlogScreen from "./screens/ShowBlog";
 import EditBlogScreen from "./screens/EditBlog";
 import CreateBlogScreen from "./screens/CreateBlog" */
@@ -33,8 +33,8 @@ const AppContainer = createAppContainer(switchNavigator)
 export default class App extends React.Component {
   render() {
     return (
-        <AppContainer />
-    );
+      <AuthProvider> <AppContainer ref={(navigator) => {setNavigator(navigator)}}/></AuthProvider>
+    )
   }
 }
 
