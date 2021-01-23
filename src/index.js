@@ -5,7 +5,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const authRoute = require('./routes/auth')
 const trackRoute = require('./routes/trackRoutes')
-const app = express();
+var cors = require('cors')
+var app = express()
+app.use(cors())
 const bodyParser = require('body-parser');
 const mongoUri = 'mongodb+srv://Ecommerce_user:Anurag0207@everyneedsfound.77luk.mongodb.net/Tracker?retryWrites=true&w=majority'
 
@@ -28,6 +30,6 @@ app.get('/',requireAuth,(req,res)=> {
     res.send(`Hi ,${req.user.email}`)
 })
 
-app.listen(3000,()=>{
-    console.log( 'Listening on Port 3000')
+app.listen(5000,()=>{
+    console.log( 'Listening on Port 5000')
 })
