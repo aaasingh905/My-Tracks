@@ -8,6 +8,7 @@ import SignupScreen from "./screens/SignupScreen";
 import TrackDetailScreen from "./screens/TrackDetailScreen";
 import TrackListScreen from "./screens/TracksListScreen";
 import TrackCreateScreen from "./screens/TrackCreateScreen";
+import StartupScreen from "./screens/StartupScreen";
 import { Provider as AuthProvider} from './components/context/authContext'
 import {setNavigator} from './navigationRef'
 /* import ShowBlogScreen from "./screens/ShowBlog";
@@ -15,6 +16,7 @@ import EditBlogScreen from "./screens/EditBlog";
 import CreateBlogScreen from "./screens/CreateBlog" */
 
 const switchNavigator = createSwitchNavigator({
+  MainScreen:StartupScreen,
   loginFlow: createStackNavigator({
     Signup: SignupScreen,
     Signin: SigninScreen,
@@ -26,7 +28,10 @@ const switchNavigator = createSwitchNavigator({
       }),
       TrackCreate: TrackCreateScreen,
       Account: AccountScreen,
-    })
+    }),
+    
+},{
+  initialRouteName: 'MainScreen',
 })
 
 const AppContainer = createAppContainer(switchNavigator)
