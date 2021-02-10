@@ -10,6 +10,7 @@ import TrackListScreen from "./screens/TracksListScreen";
 import TrackCreateScreen from "./screens/TrackCreateScreen";
 import StartupScreen from "./screens/StartupScreen";
 import { Provider as AuthProvider} from './components/context/authContext'
+import { Provider as LocationProvider} from './components/context/LocationContext'
 import {setNavigator} from './navigationRef'
 
 
@@ -36,7 +37,7 @@ const AppContainer = createAppContainer(switchNavigator)
 export default class App extends React.Component {
   render() {
     return (
-      <AuthProvider><AppContainer ref={(navigator) => {setNavigator(navigator)}}/></AuthProvider>
+      <LocationProvider><AuthProvider><AppContainer ref={(navigator) => {setNavigator(navigator)}}/></AuthProvider></LocationProvider>
     )
   }
 }
